@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfHanoiTowers"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <local:HanoiTowers Grid.Column="0" Grid.Row="0"/>
+    <Grid x:Name="MainGrid">
+        <!--<local:HanoiTowers Grid.Column="0" Grid.Row="0"/>-->
     </Grid>
 </Window>

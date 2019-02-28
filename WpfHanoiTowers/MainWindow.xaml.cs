@@ -23,6 +23,8 @@ namespace WpfHanoiTowers
         public MainWindow()
         {
             InitializeComponent();
+
+            this.MainGrid.Children.Add(new HanoiTowers(4));
         }
     }
 }
