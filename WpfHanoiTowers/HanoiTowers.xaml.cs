@@ -18,7 +18,7 @@ namespace WpfHanoiTowers
         {
             InitializeComponent();
 
-            this.CreateColumns();
+            this.CreateColumns(diskCount);
             this.CreateInitialDisks(diskCount);
         }
 
@@ -35,11 +35,11 @@ namespace WpfHanoiTowers
             }
         }
 
-        private void CreateColumns()
+        private void CreateColumns(int diskCount)
         {
-            this.columns.Add(new Column(-1.0, -1.0, 5, Colors.Red));
-            this.columns.Add(new Column(3.0, 0.0, 5, Colors.Green));
-            this.columns.Add(new Column(0.0, 3.0, 5, Colors.Blue));
+            this.columns.Add(new Column(-diskCount, -diskCount, diskCount+1, Colors.Red));
+            this.columns.Add(new Column(0.0, 0.0, diskCount+1, Colors.Green));
+            this.columns.Add(new Column(diskCount, diskCount, diskCount+1, Colors.Blue));
 
             foreach (var col in this.columns)
             {
