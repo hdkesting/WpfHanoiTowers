@@ -24,7 +24,7 @@ namespace WpfHanoiTowers
 
         private void CreateInitialDisks(int diskCount)
         {
-            var pos = columns[0].Point1;
+            var pos = columns[1].Point1;
 
             // lowest disk has size "diskCount" at Z=0, highest "1"
             for (int d = 0; d< diskCount; d++)
@@ -37,9 +37,9 @@ namespace WpfHanoiTowers
 
         private void CreateColumns(int diskCount)
         {
-            this.columns.Add(new Column(-diskCount, -diskCount, diskCount+1, Colors.Red));
+            this.columns.Add(new Column(xPosition:-diskCount, yPosition:-diskCount/2, height:diskCount+1, Colors.Red));
             this.columns.Add(new Column(0.0, 0.0, diskCount+1, Colors.Green));
-            this.columns.Add(new Column(diskCount, diskCount, diskCount+1, Colors.Blue));
+            this.columns.Add(new Column(diskCount, diskCount/2, diskCount+1, Colors.Blue));
 
             foreach (var col in this.columns)
             {
