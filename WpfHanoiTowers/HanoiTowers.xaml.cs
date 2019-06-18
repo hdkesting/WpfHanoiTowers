@@ -75,9 +75,10 @@ namespace WpfHanoiTowers
 
                 if (column != null)
                 {
-                    column.HoverDisk(liftedDisk);
-                    await Task.Delay(200);
-                    column.PushDisk(liftedDisk);
+                    if (!column.PushDisk(liftedDisk))
+                    {
+                        startColumn.PushDisk(liftedDisk);
+                    }
                 }
                 else
                 {
@@ -115,7 +116,7 @@ namespace WpfHanoiTowers
                 case Disk dsk:
                     foreach(var c in columns)
                     {
-                        if (c.Disks.Any(d => d == dsk))
+                        if (c.Point1.X == dsk.Point1.X && c.Point1.Y == dsk.Point1.Y)
                         {
                             return c;
                         }
