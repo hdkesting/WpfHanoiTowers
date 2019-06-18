@@ -24,7 +24,7 @@ namespace WpfHanoiTowers
         {
             InitializeComponent();
 
-            this.MainGrid.Children.Add(new HanoiTowers(4));
+            this.MainGrid.Children.Add(new HanoiTowers(5));
         }
     }
 }

@@ -65,7 +65,7 @@ namespace WpfHanoiTowers
             }
         }
 
-        private async void MyViewport_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void MyViewport_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Point location = e.GetPosition(myViewport);
 
