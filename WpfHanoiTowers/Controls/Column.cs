@@ -14,7 +14,7 @@ namespace WpfHanoiTowers.Controls
     /// A column to place <see cref="Disk"/>s on.
     /// </summary>
     /// <seealso cref="HelixToolkit.Wpf.PipeVisual3D" />
-    public class Column: PipeVisual3D
+    public class Column : PipeVisual3D
     {
         private readonly List<Disk> disks = new List<Disk>();
 

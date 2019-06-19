@@ -2,14 +2,14 @@
 // Copyright (c) Hans Kesting. All rights reserved.
 // </copyright>
 
-using System.Windows;
+using System.Windows.Navigation;
 
 namespace WpfHanoiTowers
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : NavigationWindow
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
@@ -17,8 +17,6 @@ namespace WpfHanoiTowers
         public MainWindow()
         {
             this.InitializeComponent();
-
-            this.MainGrid.Children.Add(new HanoiTowers(5));
         }
     }
 }

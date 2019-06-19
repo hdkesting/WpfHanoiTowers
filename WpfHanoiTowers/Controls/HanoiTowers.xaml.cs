@@ -6,9 +6,8 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using WpfHanoiTowers.Controls;
 
-namespace WpfHanoiTowers
+namespace WpfHanoiTowers.Controls
 {
     /// <summary>
     /// Interaction logic for HanoiTowers.xaml.
@@ -30,6 +29,8 @@ namespace WpfHanoiTowers
 
             this.CreateColumns(diskCount);
             this.CreateInitialDisks(diskCount);
+
+            this.myViewport.ZoomExtents(500);
         }
 
         private void CreateInitialDisks(int diskCount)
