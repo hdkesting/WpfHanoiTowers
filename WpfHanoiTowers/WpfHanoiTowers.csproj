@@ -63,6 +63,7 @@
     </ApplicationDefinition>
     <Compile Include="ViewModels\ConfigurationViewModel.cs" />
     <Compile Include="ViewModels\DiskAmount.cs" />
+    <Compile Include="ViewModels\GameStatus.cs" />
     <Page Include="Controls\HanoiTowers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

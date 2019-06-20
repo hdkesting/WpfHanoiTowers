@@ -9,6 +9,17 @@
       Title="Game">
 
     <Grid x:Name="MainGrid">
-        
+        <!-- Place a Label control at the top of the view. -->
+        <Label 
+                HorizontalAlignment="Center" 
+                TextBlock.TextAlignment="Center" 
+                FontSize="20" 
+                Foreground="Red" 
+                Content="Towers of Hanoi"/>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <TextBlock># of moves:</TextBlock>
+            <TextBlock Text="{Binding MovesMade}"/>
+        </StackPanel>
     </Grid>
 </Page>

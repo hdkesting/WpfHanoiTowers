@@ -3,20 +3,9 @@
 // </copyright>
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfHanoiTowers.Controls;
+using WpfHanoiTowers.ViewModels;
 
 namespace WpfHanoiTowers.Pages
 {
@@ -25,6 +14,8 @@ namespace WpfHanoiTowers.Pages
     /// </summary>
     public partial class Game : Page
     {
+        private GameStatus status;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Game" /> class.
         /// </summary>
@@ -33,8 +24,16 @@ namespace WpfHanoiTowers.Pages
         {
             this.InitializeComponent();
 
-            this.MainGrid.Children.Add(new HanoiTowers(numberOfDisks));
-            // TODO maximize?
+            var ctrl = new HanoiTowers(numberOfDisks);
+            this.MainGrid.Children.Add(ctrl);
+            ctrl.ValidMoveMade += this.Towers_ValidMoveMade;
+
+            this.DataContext = this.status = new GameStatus();
+        }
+
+        private void Towers_ValidMoveMade(object sender, EventArgs e)
+        {
+            this.status.MovesMade++;
         }
     }
 }

@@ -2,6 +2,7 @@
 // Copyright (c) Hans Kesting. All rights reserved.
 // </copyright>
 
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,34 +30,12 @@ namespace WpfHanoiTowers.Controls
 
             this.CreateColumns(diskCount);
             this.CreateInitialDisks(diskCount);
-
-            this.myViewport.ZoomExtents(500);
         }
 
-        private void CreateInitialDisks(int diskCount)
-        {
-            var col = this.columns[1];
-
-            // lowest disk has size "diskCount" at Z=0, highest disk has size "1"
-            for (int d = diskCount; d > 0; d--)
-            {
-                var disk = new Disk(d);
-                col.PushDisk(disk);
-                this.myViewport.Children.Add(disk);
-            }
-        }
-
-        private void CreateColumns(int diskCount)
-        {
-            this.columns.Add(new Column(xPosition: -diskCount * 1.2, yPosition: -diskCount / 2, height: diskCount + 1, Colors.Red));
-            this.columns.Add(new Column(0.0, diskCount / 2, diskCount + 1, Colors.Green));
-            this.columns.Add(new Column(diskCount * 1.2, -diskCount / 2, diskCount + 1, Colors.Blue));
-
-            foreach (var col in this.columns)
-            {
-                this.myViewport.Children.Add(col);
-            }
-        }
+        /// <summary>
+        /// Occurs when a valid move was made.
+        /// </summary>
+        public event EventHandler ValidMoveMade;
 
         private void MyViewport_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -84,6 +63,10 @@ namespace WpfHanoiTowers.Controls
                     if (!column.PushDisk(this.liftedDisk))
                     {
                         this.startColumn.PushDisk(this.liftedDisk);
+                    }
+                    else
+                    {
+                        this.ValidMoveMade?.Invoke(this, EventArgs.Empty);
                     }
                 }
                 else
@@ -133,6 +116,31 @@ namespace WpfHanoiTowers.Controls
             }
 
             return null;
+        }
+
+        private void CreateInitialDisks(int diskCount)
+        {
+            var col = this.columns[1];
+
+            // lowest disk has size "diskCount" at Z=0, highest disk has size "1"
+            for (int d = diskCount; d > 0; d--)
+            {
+                var disk = new Disk(d);
+                col.PushDisk(disk);
+                this.myViewport.Children.Add(disk);
+            }
+        }
+
+        private void CreateColumns(int diskCount)
+        {
+            this.columns.Add(new Column(xPosition: -diskCount * 1.2, yPosition: -diskCount / 2, height: diskCount + 1, Colors.Red));
+            this.columns.Add(new Column(0.0, diskCount / 2, diskCount + 1, Colors.Green));
+            this.columns.Add(new Column(diskCount * 1.2, -diskCount / 2, diskCount + 1, Colors.Blue));
+
+            foreach (var col in this.columns)
+            {
+                this.myViewport.Children.Add(col);
+            }
         }
     }
 }
