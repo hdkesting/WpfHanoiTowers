@@ -10,11 +10,9 @@
 
     <StackPanel>
         <TextBlock>Amount of disks</TextBlock>
-        <ComboBox x:Name="DiskAmount">
-            <ComboBoxItem Tag="3">Three (3)</ComboBoxItem>
-            <ComboBoxItem Tag="4">Four (4)</ComboBoxItem>
-            <ComboBoxItem Tag="5">Five (5)</ComboBoxItem>
-            <ComboBoxItem Tag="6">Six (6)</ComboBoxItem>
+        <ComboBox x:Name="DiskAmount" 
+                  ItemsSource="{Binding DiskAmounts}" DisplayMemberPath="Name" SelectedValuePath="Amount"
+                  SelectedValue="{Binding Amount}">
         </ComboBox>
 
         <Button Click="StartButton_Click">Start</Button>
