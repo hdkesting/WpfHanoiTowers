@@ -6,20 +6,23 @@
       xmlns:local="clr-namespace:WpfHanoiTowers.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Game">
+      Title="Game"
+      ShowsNavigationUI="False">
 
     <Grid x:Name="MainGrid">
         <!-- Place a Label control at the top of the view. -->
         <Label 
                 HorizontalAlignment="Center" 
                 TextBlock.TextAlignment="Center" 
-                FontSize="20" 
+                FontSize="20" FontWeight="DemiBold" FontStyle="Oblique"
                 Foreground="Red" 
                 Content="Towers of Hanoi"/>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-            <TextBlock># of moves:</TextBlock>
-            <TextBlock Text="{Binding MovesMade}"/>
+            <TextBlock>
+                <Run># of moves: </Run>
+                <Run Text="{Binding MovesMade}" Foreground="DarkBlue"/>
+            </TextBlock>
         </StackPanel>
     </Grid>
 </Page>

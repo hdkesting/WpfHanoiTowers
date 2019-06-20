@@ -2,6 +2,7 @@
 // Copyright (c) Hans Kesting. All rights reserved.
 // </copyright>
 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -12,6 +13,16 @@ namespace WpfHanoiTowers.ViewModels
     {
         private int movesMade;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameStatus"/> class.
+        /// </summary>
+        /// <param name="numberOfDisks">The number of disks.</param>
+        public GameStatus(int numberOfDisks)
+        {
+            this.NumberOfDisks = numberOfDisks;
+        }
+
+        /// <inheritdoc/>
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
@@ -25,6 +36,30 @@ namespace WpfHanoiTowers.ViewModels
             get => this.movesMade;
             set => this.SetField(ref this.movesMade, value);
         }
+
+        /// <summary>
+        /// Gets the number of disks.
+        /// </summary>
+        /// <value>
+        /// The number of disks.
+        /// </value>
+        public int NumberOfDisks { get; }
+
+        /// <summary>
+        /// Gets the optimal count of moves.
+        /// </summary>
+        /// <value>
+        /// The optimal move count.
+        /// </value>
+        public int OptimalMoveCount => (int)Math.Pow(2, this.NumberOfDisks) - 1;
+
+        /// <summary>
+        /// Gets the efficiency (only valid for completed game).
+        /// </summary>
+        /// <value>
+        /// The efficiency.
+        /// </value>
+        public double Efficiency => (double)this.OptimalMoveCount / (double)this.MovesMade;
 
         /// <summary>
         /// Sets the field to the value and calls <see cref="OnPropertyChanged"/> when needed.

@@ -3,6 +3,7 @@
 // </copyright>
 
 using System;
+using System.Windows;
 using System.Windows.Controls;
 using WpfHanoiTowers.Controls;
 using WpfHanoiTowers.ViewModels;
@@ -27,8 +28,15 @@ namespace WpfHanoiTowers.Pages
             var ctrl = new HanoiTowers(numberOfDisks);
             this.MainGrid.Children.Add(ctrl);
             ctrl.ValidMoveMade += this.Towers_ValidMoveMade;
+            ctrl.FullStackCreated += this.Towers_FullStackCreated;
 
-            this.DataContext = this.status = new GameStatus();
+            this.DataContext = this.status = new GameStatus(numberOfDisks);
+        }
+
+        private void Towers_FullStackCreated(object sender, EventArgs e)
+        {
+            MessageBox.Show($"Done! in {this.status.MovesMade} moves, efficiency {this.status.Efficiency * 100:#}%");
+            this.NavigationService.GoBack();
         }
 
         private void Towers_ValidMoveMade(object sender, EventArgs e)

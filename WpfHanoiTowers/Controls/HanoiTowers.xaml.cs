@@ -16,8 +16,15 @@ namespace WpfHanoiTowers.Controls
     public partial class HanoiTowers : UserControl
     {
         private readonly List<Column> columns = new List<Column>();
+        private readonly int diskCount;
 
+        // the column# where the full stack started
+        private int initialColumnIndex;
+
+        // the column from where the disk-move started
         private Column startColumn;
+
+        // the disk that is being lifted
         private Disk liftedDisk;
 
         /// <summary>
@@ -28,14 +35,21 @@ namespace WpfHanoiTowers.Controls
         {
             this.InitializeComponent();
 
+            this.initialColumnIndex = 1;
             this.CreateColumns(diskCount);
             this.CreateInitialDisks(diskCount);
+            this.diskCount = diskCount;
         }
 
         /// <summary>
         /// Occurs when a valid move was made.
         /// </summary>
         public event EventHandler ValidMoveMade;
+
+        /// <summary>
+        /// Occurs when a full stack is created, other than the initial one.
+        /// </summary>
+        public event EventHandler FullStackCreated;
 
         private void MyViewport_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -66,7 +80,13 @@ namespace WpfHanoiTowers.Controls
                     }
                     else
                     {
+                        // this was a was valid move
                         this.ValidMoveMade?.Invoke(this, EventArgs.Empty);
+
+                        if (column.DiskCount == this.diskCount && column != this.columns[this.initialColumnIndex])
+                        {
+                            this.FullStackCreated?.Invoke(this, EventArgs.Empty);
+                        }
                     }
                 }
                 else
@@ -120,7 +140,7 @@ namespace WpfHanoiTowers.Controls
 
         private void CreateInitialDisks(int diskCount)
         {
-            var col = this.columns[1];
+            var col = this.columns[this.initialColumnIndex];
 
             // lowest disk has size "diskCount" at Z=0, highest disk has size "1"
             for (int d = diskCount; d > 0; d--)

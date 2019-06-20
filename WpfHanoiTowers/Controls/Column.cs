@@ -43,6 +43,14 @@ namespace WpfHanoiTowers.Controls
         public IEnumerable<Disk> Disks => this.disks;
 
         /// <summary>
+        /// Gets the current disk count.
+        /// </summary>
+        /// <value>
+        /// The disk count.
+        /// </value>
+        public int DiskCount => this.disks.Count;
+
+        /// <summary>
         /// Pushes the disk onto this column, if it fits.
         /// </summary>
         /// <param name="disk">The disk.</param>
