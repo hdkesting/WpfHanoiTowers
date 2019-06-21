@@ -9,11 +9,21 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <!-- Viewport3D is the rendering surface. -->
-        <HelixToolkit:HelixViewport3D ZoomExtentsWhenLoaded="True" Name="myViewport" Margin="0,-10,10,10"
-                                      Mouse.MouseDown="MyViewport_MouseDown" Mouse.MouseUp="MyViewport_MouseUp" Mouse.MouseMove="MyViewport_MouseMove">
+        <HelixToolkit:HelixViewport3D ZoomExtentsWhenLoaded="True" Name="myViewport" Margin="10,10,10,10"
+                    Mouse.MouseDown="MyViewport_MouseDown" Mouse.MouseUp="MyViewport_MouseUp" Mouse.MouseMove="MyViewport_MouseMove">
             <HelixToolkit:SunLight/>
-            <HelixToolkit:GridLinesVisual3D Width="10" Length="18" MinorDistance="1" MajorDistance="1" Thickness="0.01">
-            </HelixToolkit:GridLinesVisual3D>
+            <!--<HelixToolkit:GridLinesVisual3D Width="10" Length="18" MinorDistance="1" MajorDistance="1" Thickness="0.01"/>-->
+
+            <HelixToolkit:BoxVisual3D Width="15" Height="0.2" Length="30" Center="0,0,-0.2">
+                <HelixToolkit:BoxVisual3D.Fill>
+                    <RadialGradientBrush GradientOrigin="0.5, 0.5" Center="0.5, 0.5" RadiusX="0.5" RadiusY="0.5">
+                        <RadialGradientBrush.GradientStops>
+                            <GradientStop Color="White" Offset="0"/>
+                            <GradientStop Color="Azure" Offset="1.0"/>
+                        </RadialGradientBrush.GradientStops>
+                    </RadialGradientBrush>
+                </HelixToolkit:BoxVisual3D.Fill>
+            </HelixToolkit:BoxVisual3D>
             <!-- columns and disks are added here by code -->
         </HelixToolkit:HelixViewport3D>
     </Grid>

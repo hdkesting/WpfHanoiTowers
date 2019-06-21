@@ -9,6 +9,10 @@ using System.Runtime.CompilerServices;
 
 namespace WpfHanoiTowers.ViewModels
 {
+    /// <summary>
+    /// View Model for game status.
+    /// </summary>
+    /// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
     public class GameStatus : INotifyPropertyChanged
     {
         private int movesMade;
