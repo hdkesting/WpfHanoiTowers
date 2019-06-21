@@ -28,5 +28,10 @@ namespace WpfHanoiTowers.Pages
         {
             this.NavigationService.Navigate(new Game(this.viewModel.Amount));
         }
+
+        private void StartRandom_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Game(this.viewModel.Amount, true));
+        }
     }
 }

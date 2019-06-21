@@ -61,6 +61,14 @@ namespace WpfHanoiTowers.Controls
             }
         }
 
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="string" /> that represents this instance.
+        /// </returns>
+        public override string ToString() => "Disk " + this.Size;
+
         private Color GetDiskColor(bool even)
         {
             return AddTransparency(even ? Colors.Gold : Colors.Silver, 200);

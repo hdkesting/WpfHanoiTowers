@@ -11,11 +11,14 @@
 
     <StackPanel>
         <TextBlock>Amount of disks</TextBlock>
-        <ComboBox x:Name="DiskAmount" 
+        <ComboBox x:Name="DiskAmount" Width="200"
                   ItemsSource="{Binding DiskAmounts}" DisplayMemberPath="Name" SelectedValuePath="Amount"
                   SelectedValue="{Binding Amount}">
         </ComboBox>
 
-        <Button Click="StartButton_Click">Start</Button>
+        <StackPanel Orientation="Horizontal">
+            <Button Click="StartButton_Click" Width="200">Start regular</Button>
+            <Button Click="StartRandom_Click" Width="200" Margin="10,0">Start random</Button>        
+        </StackPanel>
     </StackPanel>
 </Page>

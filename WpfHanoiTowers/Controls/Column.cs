@@ -93,5 +93,13 @@ namespace WpfHanoiTowers.Controls
         {
             disk.Position = new Point3D(this.Point2.X, this.Point2.Y, this.Point2.Z + Disk.Thickness);
         }
+
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="string" /> that represents this instance.
+        /// </returns>
+        public override string ToString() => $"Column: {string.Join("-", this.disks.Select(d => d.Size))}";
     }
 }

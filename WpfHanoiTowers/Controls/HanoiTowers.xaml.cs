@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -26,6 +27,8 @@ namespace WpfHanoiTowers.Controls
 
         // the disk that is being lifted
         private Disk liftedDisk;
+
+        private bool randomized;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HanoiTowers"/> class.
@@ -50,6 +53,35 @@ namespace WpfHanoiTowers.Controls
         /// Occurs when a full stack is created, other than the initial one.
         /// </summary>
         public event EventHandler FullStackCreated;
+
+        /// <summary>
+        /// Randomizes the disks over the columns, keeping a valid layout.
+        /// </summary>
+        public void Randomize()
+        {
+            const int columnCount = 3;
+            this.randomized = true;
+
+            var disks = new List<Disk>();
+            Disk d;
+
+            // "pop" starts at topmost = smallest
+            while ((d = this.columns[this.initialColumnIndex].PopDisk()) != null)
+            {
+                disks.Add(d);
+            }
+
+            // I want to push largest first
+            disks.Reverse();
+
+            var rng = new Random();
+
+            foreach (Disk d2 in disks)
+            {
+                var col = this.columns[rng.Next(columnCount)];
+                col.PushDisk(d2);
+            }
+        }
 
         private void MyViewport_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -83,7 +115,8 @@ namespace WpfHanoiTowers.Controls
                         // this was a was valid move
                         this.ValidMoveMade?.Invoke(this, EventArgs.Empty);
 
-                        if (column.DiskCount == this.diskCount && column != this.columns[this.initialColumnIndex])
+                        // this column is filled and it is not the start column OR the columns were randomized.
+                        if (column.DiskCount == this.diskCount && (this.randomized || column != this.columns[this.initialColumnIndex]))
                         {
                             this.FullStackCreated?.Invoke(this, EventArgs.Empty);
                         }
